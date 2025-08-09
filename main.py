@@ -17,7 +17,7 @@ length_measurements= {
 }
 weight_measurements= {
     "aanapindam": 2.5,
-    "": 0.05,
+    "avalosunda": 0.025,
     "chakka": 15,
     "pothichor": 0.6,
     "uppilitta maanga": 0.27,
@@ -32,15 +32,12 @@ weight_measurements= {
 def index():
     if request.method == "POST":
         try:
-            # Get the name, height, and weight from the form
             name = request.form["name"]
             height_cm = float(request.form["height"])
             weight_kg = float(request.form["weight"])
             
-            # Redirect to the results page, passing all three values
             return redirect(url_for("results", h=height_cm, w=weight_kg, n=name))
         except (ValueError, KeyError):
-            # Show an error message if the input is invalid
             return render_template("index.html", error="Please enter valid data.")
     return render_template("index.html")
 
